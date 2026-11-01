@@ -480,3 +480,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Eigen bestanden (niet naar GitHub)
+Claude outputs/
+*.docx
