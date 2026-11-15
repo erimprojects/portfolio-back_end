@@ -8,9 +8,9 @@ namespace portfolio_backend.Controllers;
 [Route("api/projects")]
 public class ProjectsController : ControllerBase
 {
-    private readonly IProjectService _service;
+    private readonly ProjectService _service;
 
-    public ProjectsController(IProjectService service) // Dependency Injection Contructor
+    public ProjectsController(ProjectService service) // Dependency Injection Contructor
     {
         _service = service;
     }

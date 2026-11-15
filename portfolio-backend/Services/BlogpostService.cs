@@ -7,7 +7,7 @@ namespace portfolio_backend.Services;
 
 // Service = logica-laag. Zit tussen de controller (HTTP) en de DbContext (database).
 // Hier gebeurt ook de omzetting (mapping) tussen entity en DTO.
-public class BlogpostService : IBlogpostService
+public class BlogpostService
 {
     // Veld waarin de DbContext bewaard wordt
     // readonly = wordt één keer ingevuld in de constructor en daarna nooit meer veranderd

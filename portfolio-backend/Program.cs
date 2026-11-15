@@ -16,11 +16,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<PortfolioDb>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Portfolio")));
 
-// Services (applicatielogica) via dependency injection
-// "Vraagt iemand om IProjectService? Geef dan een ProjectService."
-// Scoped, omdat de services PortfolioDb gebruiken (die is ook Scoped)
-builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IBlogpostService, BlogpostService>();
+
+builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<BlogpostService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

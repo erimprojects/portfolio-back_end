@@ -9,4 +9,5 @@ public class PortfolioDb : DbContext
 
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<Blogpost> Blogposts => Set<Blogpost>();
+
 }

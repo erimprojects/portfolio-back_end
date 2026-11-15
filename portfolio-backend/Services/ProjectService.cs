@@ -5,7 +5,7 @@ using portfolio_backend.Models;
 
 namespace portfolio_backend.Services;
 
-public class ProjectService : IProjectService
+public class ProjectService
 {
     private readonly PortfolioDb _db;
 

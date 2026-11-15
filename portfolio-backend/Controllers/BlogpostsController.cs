@@ -8,16 +8,16 @@ namespace portfolio_backend.Controllers;
 [Route("api/blogposts")]
 public class BlogpostsController : ControllerBase
 {
-    private readonly IBlogpostService _service;
+    private readonly BlogpostService _service;
 
-    public BlogpostsController(IBlogpostService service)
+    public BlogpostsController(BlogpostService service)
     {
         _service = service;
     }
 
     // GET api/blogposts
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<BlogpostResponse>>> GetAll(CancellationToken ct)
+    public async Task<ActionResult<IReadOnlyList<BlogpostResponse>>> GetAll(CancellationToken ct)// actionresult<projectresponse> = zorgt ervoor dat de methode data en een statuscode teruggeeft.
     {
         var blogposts = await _service.GetAllAsync(ct);
         return Ok(blogposts);
