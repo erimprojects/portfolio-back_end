@@ -23,7 +23,7 @@ builder.Services.AddDbContext<PortfolioDb>(options =>
 builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<BlogpostService>();
 // identity registreren: zet Identity aan voor een API (cookie-login), en registreert UserManager<User> en SignInManager<User> in DI.
-builder.Services.AddIdentityApiEndpoint<User>()
+builder.Services.AddIdentityApiEndpoints<User>()
     .AddRoles<IdentityRole>() // rollen aanzetten die ik heb gemaakt + RoleManger vanuit de identity package
     .AddEntityFrameworkStores<PortfolioDb>(); // gebruikers en rollen opslaan in de database via ef core
 
