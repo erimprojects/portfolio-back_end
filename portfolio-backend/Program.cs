@@ -41,6 +41,13 @@ builder.Services.AddSwaggerGen(c =>
 // ===== APP BOUWEN =====
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())// tijdens ontwikkel de test data aanmaken, tijdens production dus echte server zal dit niet werken.
+{
+    await DbSeeder.SeedAsync(app.Services, app.Configuration); 
+    // await omdat de dbseeder async is, wachten tot seed geladen is en dan start de app.
+    // app.services = de di container in dbseeder.cs, app.configration = instelling inclusief de user-secrets list.
+}
+
 // ===== MIDDLEWARE (na Build) =====
 
 // Swagger alleen tijdens het ontwikkelen
