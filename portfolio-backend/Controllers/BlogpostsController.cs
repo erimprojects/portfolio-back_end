@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using portfolio_backend.Dtos;
 using portfolio_backend.Services;
-
+using Microsoft.AspNetCore.Authorization; // hier zit [Authorize] in
+using portfolio_backend.Auth;             // Policies
 namespace portfolio_backend.Controllers;
 
 [ApiController]
@@ -36,6 +37,7 @@ public class BlogpostsController : ControllerBase
 
     // POST api/blogposts
     [HttpPost]
+    [Authorize(Policy = Policies.KanSchrijven)] // zo zie je dat admin of editor alleen bevoegt is dit zit bij elke post, put, delete.
     public async Task<ActionResult<BlogpostResponse>> Create(BlogpostRequest request, CancellationToken ct)
     {
         var blogpost = await _service.CreateAsync(request, ct);
@@ -44,6 +46,7 @@ public class BlogpostsController : ControllerBase
 
     // PUT api/blogposts/5
     [HttpPut("{id:int}")]
+    [Authorize(Policy = Policies.KanSchrijven)] // zo zie je dat admin of editor alleen bevoegt is dit zit bij elke post, put, delete.
     public async Task<IActionResult> Update(int id, BlogpostRequest request, CancellationToken ct)
     {
         var updated = await _service.UpdateAsync(id, request, ct);
@@ -55,6 +58,8 @@ public class BlogpostsController : ControllerBase
 
     // DELETE api/blogposts/5
     [HttpDelete("{id:int}")]
+    [Authorize(Policy = Policies.KanSchrijven)] // zo zie je dat admin of editor alleen bevoegt is dit zit bij elke post, put, delete.
+
     public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {
         var deleted = await _service.DeleteAsync(id, ct);

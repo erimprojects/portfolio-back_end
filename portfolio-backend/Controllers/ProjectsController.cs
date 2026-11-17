@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using portfolio_backend.Dtos;
 using portfolio_backend.Services;
-
+using Microsoft.AspNetCore.Authorization; // hier zit [Authorize] in
+using portfolio_backend.Auth;             // Policies
 namespace portfolio_backend.Controllers;
 
 [ApiController]
@@ -35,6 +36,8 @@ public class ProjectsController : ControllerBase
     }
         // POST api/projects
     [HttpPost]
+    [Authorize(Policy = Policies.KanSchrijven)] // zo zie je dat admin of editor alleen bevoegt is dit zit bij elke post, put, delete.
+
     public async Task<ActionResult<ProjectResponse>> Create(ProjectRequest request, CancellationToken ct)
     {
         var project = await _service.CreateAsync(request, ct); // service maakt het project aan in de database
@@ -43,6 +46,7 @@ public class ProjectsController : ControllerBase
 
     // PUT api/projects/5
     [HttpPut("{id:int}")]
+    [Authorize(Policy = Policies.KanSchrijven)] // zo zie je dat admin of editor alleen bevoegt is dit zit bij elke post, put, delete.
     public async Task<IActionResult> Update(int id, ProjectRequest request, CancellationToken ct)
     {
         var updated = await _service.UpdateAsync(id, request, ct); // true = gelukt, false = niet gevonden
@@ -54,6 +58,7 @@ public class ProjectsController : ControllerBase
 
     // DELETE api/projects/5
     [HttpDelete("{id:int}")]
+    [Authorize(Policy = Policies.KanSchrijven)] // zo zie je dat admin of editor alleen bevoegt is dit zit bij elke post, put, delete.
     public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {
         var deleted = await _service.DeleteAsync(id, ct); // true = gelukt, false = niet gevonden
@@ -62,4 +67,5 @@ public class ProjectsController : ControllerBase
 
         return NoContent(); // 204
     }
+
 }
