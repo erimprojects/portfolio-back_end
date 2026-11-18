@@ -68,3 +68,9 @@ app.UseAuthorization(); // checkt na de authentication wat de gebruiker mag doen
 app.MapControllers(); // koppelt de routes uit de controllers ([Route], [HttpGet], ...)
 
 app.Run(); // start de server
+
+// maak de program class zichtbaar voor test project // zodat webapplicationFactory de api kan opstarten
+public partial class Program
+{
+    
+}
